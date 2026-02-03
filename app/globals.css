@@ -1,26 +1,159 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0f;
+  --foreground: #fafafa;
+  --muted: #a1a1aa;
+  --border: #27272a;
+  --accent: #fafafa;
+  /* Gradients */
+  --gradient-start: #6366f1;
+  --gradient-mid: #8b5cf6;
+  --gradient-end: #d946ef;
+  --gradient-subtle: rgba(99, 102, 241, 0.08);
+  --gradient-glow: rgba(139, 92, 246, 0.4);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", "Segoe UI Mono", monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Gradient utilities */
+.gradient-text {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.gradient-border {
+  position: relative;
+  background: var(--background);
+  border-radius: inherit;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease, box-shadow 0.3s ease;
+}
+.gradient-border:hover::before {
+  opacity: 1;
+  box-shadow: 0 0 24px var(--gradient-glow);
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  background-size: 200% 200%;
+  transition: background-position 0.4s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.btn-gradient:hover {
+  background-position: 100% 50%;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--gradient-glow);
+}
+
+.btn-ghost-gradient {
+  border: 1px solid transparent;
+  background: linear-gradient(var(--background), var(--background)) padding-box,
+    linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end)) border-box;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.btn-ghost-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--gradient-glow);
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+/* Section gradient divider */
+.section-border {
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.section-border::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  border-radius: 0 2px 2px 0;
+}
+
+/* Nav link gradient underline */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  width: 100%;
+}
+
+/* Skill tag hover */
+.skill-tag {
+  transition: transform 0.2s ease, color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.skill-tag:hover,
+.skill-tag:focus-visible {
+  transform: scale(1.05);
+  color: var(--foreground);
+  background: linear-gradient(135deg, var(--gradient-subtle), rgba(217, 70, 239, 0.08));
+  box-shadow: 0 0 20px var(--gradient-glow);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus visible for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--gradient-mid);
+  outline-offset: 2px;
 }
