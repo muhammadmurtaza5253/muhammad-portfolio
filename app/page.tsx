@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Header } from "./components/Header";
 
 const NAV_LINKS = [
   { href: "#about", label: "About" },
@@ -37,28 +38,28 @@ const EXPERIENCE = [
 
 const PROJECTS = [
   {
-    name: "Project Alpha",
+    name: "LipSync Voice for Aphonia Patients in Urdu",
     description:
-      "A distributed system for real-time data processing. Built with Go and Kafka.",
+      "This project aimed to assist aphonia patients by converting lip movements into speech in Urdu. Since no such dataset previously existed, we created a new dataset specifically for Urdu lip-reading.",
     href: "#",
     githubHref: "#",
-    tags: ["Go", "Kafka", "PostgreSQL"],
+    tags: ["Python", "Pytorch"],
   },
   {
-    name: "Project Beta",
+    name: "Consular Management Application",
     description:
-      "Internal dashboard for monitoring and alerting. React front end, Node.js API.",
+      "This application was designed for educational consultant to follow up with their students applications. It incorporates features such as role based access, and CRUD operations. It is a fullstack application, that also has backend integrated with MongoDB database.",
     href: "#",
     githubHref: "#",
-    tags: ["React", "TypeScript", "Node.js"],
+    tags: ["Next.js", "React.js", "Typescript", "MongoDB"],
   },
   {
-    name: "Project Gamma",
+    name: "FT Sweets Mobile Application",
     description:
-      "Open-source CLI tool for local development workflows. 2k+ GitHub stars.",
+      "It is a confenctionary store mobile application that allows users to browse the menu, search for specific items, and place order. It integrates complete E-Commerce Operation including the admin panel, and order management system.",
     href: "#",
     githubHref: "#",
-    tags: ["Rust", "CLI"],
+    tags: ["Flutter", "MongoDB", "Python"],
   },
 ];
 
@@ -68,6 +69,8 @@ const SKILLS = [
   "Node.js",
   "Python",
   "PostgreSQL",
+  "Flutter",
+  "MongoDB"
 ];
 
 export default function Home() {
@@ -89,37 +92,16 @@ export default function Home() {
         />
       </div>
 
-      <header className="sticky top-0 z-10 border-b border-[var(--border)] bg-[var(--background)]/80 backdrop-blur-xl">
-        <nav className="mx-auto flex max-w-2xl items-center justify-between px-6 py-4">
-          <Link
-            href="#"
-            className="text-sm font-medium text-[var(--foreground)] transition hover:opacity-80 focus:outline-none focus-visible:opacity-100"
-          >
-            Your Name
-          </Link>
-          <ul className="flex gap-6">
-            {NAV_LINKS.map(({ href, label }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className="nav-link text-sm text-[var(--muted)] transition hover:text-[var(--foreground)] focus:outline-none focus-visible:text-[var(--foreground)]"
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </header>
+      <Header links={NAV_LINKS} />
 
       <main className="relative">
         {/* Hero */}
-        <section className="section-border relative px-6 py-20 sm:py-28">
-          <div className="mx-auto max-w-2xl">
+        <section className="section-border relative px-4 py-16 sm:px-6 sm:py-20 md:py-28">
+          <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
             <p className="mb-2 text-sm font-medium text-[var(--muted)]">
               Software Engineer
             </p>
-            <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">
               Hi, I&apos;m{" "}
               <span className="gradient-text">Muhammad Murtaza</span>. I build
               reliable software and clear systems.
@@ -128,7 +110,7 @@ export default function Home() {
               Based in the United States. Focused on frontend and backend systems, APIs, and
               developer experience. Previously worked at dubizzle UAE.
             </p>
-            <div className="mt-10 flex gap-4">
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
               <a
                 href="#contact"
                 className="btn-gradient inline-flex items-center rounded-lg px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gradient-mid)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
@@ -147,18 +129,18 @@ export default function Home() {
         </section>
 
         {/* About */}
-        <section id="about" className="section-border px-6 py-16 sm:py-20">
-          <div className="mx-auto max-w-2xl">
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+        <section id="about" className="section-border px-4 py-12 sm:px-6 sm:py-16 md:py-20">
+          <div className="mx-auto flex max-w-2xl flex-col items-center">
+            <h2 className="text-center text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
               About
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-[var(--foreground)]">
+            <p className="mt-4 text-center text-lg leading-relaxed text-[var(--foreground)] sm:text-left">
               I&apos;m a software engineer with 2 years of experience building
               web applications and distributed systems. I care about clean code,
               clear APIs, and maintainable architecture. When I&apos;m not
               coding, When I'm not coding, I might be at the gym or writing LinkedIn posts.
             </p>
-            <p className="mt-4 text-[var(--muted)]">
+            <p className="mt-4 text-center text-[var(--muted)] sm:text-left">
               I&apos;m currently open to new opportunities and happy to chat
               about projects or roles.
             </p>
@@ -166,12 +148,12 @@ export default function Home() {
         </section>
 
         {/* Experience */}
-        <section id="experience" className="section-border px-6 py-16 sm:py-20">
-          <div className="mx-auto max-w-2xl">
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+        <section id="experience" className="section-border px-4 py-12 sm:px-6 sm:py-16 md:py-20">
+          <div className="mx-auto flex w-full max-w-2xl flex-col items-center">
+            <h2 className="w-full text-center text-sm font-semibold uppercase tracking-wider text-[var(--muted)] sm:text-left">
               Experience
             </h2>
-            <ul className="mt-10 space-y-12">
+            <ul className="mt-8 w-full space-y-6 sm:mt-10 sm:space-y-12">
               {EXPERIENCE.map((job) => (
                 <li
                   key={`${job.company}-${job.role}`}
@@ -203,17 +185,17 @@ export default function Home() {
         </section>
 
         {/* Projects */}
-        <section id="projects" className="section-border px-6 py-16 sm:py-20">
-          <div className="mx-auto max-w-2xl">
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+        <section id="projects" className="section-border px-4 py-12 sm:px-6 sm:py-16 md:py-20">
+          <div className="mx-auto flex w-full max-w-2xl flex-col items-center">
+            <h2 className="w-full text-center text-sm font-semibold uppercase tracking-wider text-[var(--muted)] sm:text-left">
               Selected projects
             </h2>
-            <ul className="mt-10 space-y-6">
+            <ul className="mt-8 w-full space-y-6 sm:mt-10 md:max-w-2xl">
               {PROJECTS.map((project) => (
                 <li key={project.name} className="relative">
                   <Link
                     href={project.href}
-                    className="group gradient-border block rounded-xl border border-[var(--border)] bg-[var(--background)]/50 p-5 pr-14 transition hover:bg-[var(--background)]/80 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gradient-mid)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                    className="group gradient-border block w-full rounded-xl border border-[var(--border)] bg-[var(--background)]/50 p-4 pr-12 transition hover:bg-[var(--background)]/80 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gradient-mid)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:p-5 sm:pr-14"
                   >
                     <h3 className="font-semibold text-[var(--foreground)] transition group-hover:text-indigo-300">
                       {project.name}
@@ -236,7 +218,7 @@ export default function Home() {
                     href={project.githubHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute bottom-5 right-5 flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--background)]/80 text-[var(--muted)] transition hover:border-indigo-500/50 hover:text-indigo-400 hover:shadow-[0_0_16px_rgba(99,102,241,0.2)] focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                    className="absolute bottom-4 right-4 flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--background)]/80 text-[var(--muted)] transition hover:border-indigo-500/50 hover:text-indigo-400 hover:shadow-[0_0_16px_rgba(99,102,241,0.2)] focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:bottom-5 sm:right-5 sm:h-9 sm:w-9"
                     aria-label={`View ${project.name} on GitHub`}
                   >
                     <svg
@@ -259,12 +241,12 @@ export default function Home() {
         </section>
 
         {/* Skills */}
-        <section id="skills" className="section-border px-6 py-16 sm:py-20">
-          <div className="mx-auto max-w-2xl">
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
+        <section id="skills" className="section-border px-4 py-12 sm:px-6 sm:py-16 md:py-20">
+          <div className="mx-auto flex max-w-2xl flex-col items-center">
+            <h2 className="text-center text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
               Skills
             </h2>
-            <ul className="mt-6 flex flex-wrap gap-2">
+            <ul className="mt-6 flex flex-wrap justify-center gap-2">
               {SKILLS.map((skill) => (
                 <li key={skill}>
                   <span
@@ -280,7 +262,7 @@ export default function Home() {
         </section>
 
         {/* Contact */}
-        <section id="contact" className="px-6 py-16 sm:py-20">
+        <section id="contact" className="px-4 py-12 sm:px-6 sm:py-16 md:py-20">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--muted)]">
               Contact
@@ -289,10 +271,10 @@ export default function Home() {
               I&apos;d love to hear from you. Reach out for opportunities,
               collaboration, or just to say hi.
             </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-6">
+            <div className="mt-8 flex w-full max-w-2xl flex-col items-center gap-4 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6">
               <a
                 href="mailto:muhammad.murtaza5253@gmail.com"
-                className="flex items-center gap-2.5 rounded-lg border border-[var(--border)] px-4 py-3 text-sm font-medium text-[var(--foreground)] transition hover:border-indigo-500/50 hover:text-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                className="flex w-full items-center justify-center gap-2.5 rounded-lg border border-[var(--border)] px-4 py-3 text-sm font-medium text-[var(--foreground)] transition hover:border-indigo-500/50 hover:text-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto"
                 aria-label="Email"
               >
                 <svg
@@ -315,7 +297,7 @@ export default function Home() {
                 href="https://linkedin.com/in/muhammad-murtaza-cs"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 rounded-lg border border-[var(--border)] px-4 py-3 text-sm font-medium text-[var(--foreground)] transition hover:border-indigo-500/50 hover:text-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                className="flex w-full items-center justify-center gap-2.5 rounded-lg border border-[var(--border)] px-4 py-3 text-sm font-medium text-[var(--foreground)] transition hover:border-indigo-500/50 hover:text-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto"
                 aria-label="LinkedIn profile"
               >
                 <svg
@@ -332,7 +314,7 @@ export default function Home() {
                 href="https://github.com/mm06369?tab=repositories"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 rounded-lg border border-[var(--border)] px-4 py-3 text-sm font-medium text-[var(--foreground)] transition hover:border-indigo-500/50 hover:text-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                className="flex w-full items-center justify-center gap-2.5 rounded-lg border border-[var(--border)] px-4 py-3 text-sm font-medium text-[var(--foreground)] transition hover:border-indigo-500/50 hover:text-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] sm:w-auto"
                 aria-label="GitHub profile"
               >
                 <svg
@@ -354,8 +336,8 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="relative border-t border-[var(--border)] px-6 py-8">
-        <div className="mx-auto flex max-w-2xl items-center justify-between text-sm text-[var(--muted)]">
+      <footer className="relative border-t border-[var(--border)] px-4 py-6 sm:px-6 sm:py-8">
+        <div className="mx-auto flex max-w-2xl flex-col items-center justify-between gap-2 text-center text-sm text-[var(--muted)] sm:flex-row sm:text-left">
           <span>© {new Date().getFullYear()} Muhammad Murtaza</span>
           <span>Built with Next.js</span>
         </div>

@@ -2,11 +2,24 @@
 
 import { useEffect, useState } from "react";
 
+const MOBILE_BREAKPOINT = 768; // match Tailwind md
+
 export function GlowingCursor() {
   const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isVisible, setIsVisible] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
+    const media = window.matchMedia(`(min-width: ${MOBILE_BREAKPOINT}px)`);
+    const update = () => setIsDesktop(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktop) return;
+
     const handleMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
       if (!isVisible) setIsVisible(true);
@@ -24,9 +37,9 @@ export function GlowingCursor() {
       document.body.removeEventListener("mouseleave", handleLeave);
       document.body.removeEventListener("mouseenter", handleEnter);
     };
-  }, [isVisible]);
+  }, [isDesktop, isVisible]);
 
-  if (!isVisible) return null;
+  if (!isDesktop || !isVisible) return null;
 
   return (
     <>
